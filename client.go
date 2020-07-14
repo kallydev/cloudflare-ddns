@@ -27,7 +27,7 @@ func NewClient(conf *Config) *Client {
 
 func (cli *Client) Start() (err error) {
 	var conn *grpc.ClientConn
-	if cli.conf.TLS == nil {
+	if cli.conf.TLS != nil {
 		creds, err := credentials.NewClientTLSFromFile(cli.conf.TLS.Cert, "")
 		if err != nil {
 			return err

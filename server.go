@@ -106,15 +106,21 @@ func (svr *Server) UpdateDNSRecords(recordID, name, context string) error {
 }
 
 func (svr *Server) Start() error {
-	creds, err := credentials.NewServerTLSFromFile(svr.conf.TLS.Cert, svr.conf.TLS.Key)
-	if err != nil {
-		return err
+	var s *grpc.Server
+	if svr.conf.TLS != nil {
+		creds, err := credentials.NewServerTLSFromFile(svr.conf.TLS.Cert, svr.conf.TLS.Key)
+		if err != nil {
+			return err
+		}
+		s = grpc.NewServer(grpc.Creds(creds))
+	} else {
+		s = grpc.NewServer()
 	}
 	lis, err := net.Listen("tcp", net.JoinHostPort(svr.conf.Server.Host, strconv.Itoa(svr.conf.Server.Port)))
 	if err != nil {
 		return err
 	}
-	s := grpc.NewServer(grpc.Creds(creds))
+
 	pb.RegisterCloudFlareDDNSServer(s, svr)
 	return s.Serve(lis)
 }
