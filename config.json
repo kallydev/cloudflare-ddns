@@ -1,0 +1,20 @@
+{
+  "cloud_flare": {
+    "email": "example@email.com",
+    "key": "b57a34a824e81f05c6fee5be3cef10f015665",
+    "zone_id": "c0a6482d6cb17960b5bfdfa3d256f5f1",
+    "account_id": "95cbb560688820be3be3e08571da12b4"
+  },
+  "tls": {
+    "cert": "public.pem",
+    "key": "private.pem"
+  },
+  "client": {
+    "server": "example.com:50051",
+    "domain": "www.example.com"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 50051
+  }
+}

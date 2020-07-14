@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "../proto";
+
+service CloudFlareDDNS {
+  rpc RefreshDDNSRecord(RefreshDNSRecordRequest) returns (RefreshDNSRecordResponse);
+}
+
+message RefreshDNSRecordRequest {
+  string name = 1;
+  string key = 3;
+}
+
+message RefreshDNSRecordResponse {
+  string message = 1;
+}
