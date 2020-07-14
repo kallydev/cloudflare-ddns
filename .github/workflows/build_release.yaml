@@ -1,0 +1,18 @@
+name: Build release
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.14
+        id: go
+      - uses: actions/checkout@v2
+      - name: Build debug
+        run: bash ./script/build.sh
+      - name: Build release
+        run: bash ./script/build.sh --release
