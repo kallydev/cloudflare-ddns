@@ -12,13 +12,13 @@ for(( i=0;i<${#platforms[@]};i++)) do
   name=${project}_${platforms[i]}
   if [[ $release == "--release" ]]; then
     mkdir -p release
-    GOOS=${array[0]} GOARCH=${array[1]} /snap/go/current/bin/go build -ldflags "-s -w" -o release/"${name}" cmd/main.go
+    GOOS=${array[0]} GOARCH=${array[1]} go build -ldflags "-s -w" -o release/"${name}" cmd/main.go
     strip -s release/"$name"
     upx -9 release/"$name"
-    7z a release/"$name".7z release/"$name" README.md LICENSE config.json public.pem private.pem
+    7z a release/"$name".7z release/"$name" README.md LICENSE config.json
     sha1sum release/"$name".7z > release/"$name".7z.sha1
   else
     mkdir -p build
-    GOOS=${array[0]} GOARCH=${array[1]} /snap/go/current/bin/go build -o build/"${name}" cmd/main.go
+    GOOS=${array[0]} GOARCH=${array[1]} go build -o build/"${name}" cmd/main.go
   fi
 done;

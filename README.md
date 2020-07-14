@@ -16,7 +16,7 @@ You need to install `upx-ucl` and `p7zip-full`, the compiled files are located i
 ```bash
 git clone https://github.com/kallydev/cloudflare-ddns
 cd cloudflare-ddns
-bash bash script/build.sh --release
+bash script/build.sh --release
 ```
 
 ### 2. Config
